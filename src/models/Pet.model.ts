@@ -1,13 +1,14 @@
-import IUser from "./User.model";
+import { Types } from "mongoose";
 
 interface IPet {
+  _id?: string;
   name: string;
   age: number;
   weight: number;
   color: string;
   available: boolean;
-  user: IUser;
-  adopter?: IUser;
+  user: Types.ObjectId;
+  adopter?: Types.ObjectId;
   createdAt?: Date;
   updatedAt?: Date;
 }
