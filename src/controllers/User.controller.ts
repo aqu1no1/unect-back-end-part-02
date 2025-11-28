@@ -11,7 +11,7 @@ import { getUserByToken } from "../utils/get-user-by-token";
 
 //Criacao do fluxo registro do user
 export const register = async (req: Request, res: Response) => {
-  const { name, email, phone, password, confirpassword } = req.body;
+  const { name, email, phone, password, confirmpassword } = req.body;
 
   if (!name) {
     res.status(422).json({ message: "Name is required!" });
@@ -33,12 +33,12 @@ export const register = async (req: Request, res: Response) => {
     return;
   }
 
-  if (!confirpassword) {
+  if (!confirmpassword) {
     res.status(422).json({ message: "The confirm password is required!" });
     return;
   }
 
-  if (password !== confirpassword) {
+  if (password !== confirmpassword) {
     res
       .status(422)
       .json({ message: "Password and the confirm Password is not the same" });

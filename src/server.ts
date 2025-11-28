@@ -4,14 +4,17 @@ import logger from "./utils/logger";
 import connect from "./utils/connect";
 import UserRoutes from "./routes/user.routes";
 import PetRoutes from "./routes/pet.routes";
-//import { setupSwagger } from "./utils/swagger";
+import { swaggerOptions } from "./config/swagger";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 dotenv.config();
 
 const app = express();
-
-//setupSwagger(app);
 app.use(express.json());
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 //Routes
 app.use("/users", UserRoutes);
